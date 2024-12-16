@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios - FitRoutine</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'base.html' %}
+    <div class="container">
+        <h1>Ejercicios</h1>
+        <p>Selecciona un grupo muscular para ver los ejercicios disponibles:</p>
+        <div class="muscle-groups">
+            <ul>
+                <li><a href="#pecho">Pecho</a></li>
+                <li><a href="#espalda">Espalda</a></li>
+                <li><a href="#piernas">Piernas</a></li>
+                <li><a href="#brazos">Brazos</a></li>
+                <li><a href="#hombros">Hombros</a></li>
+                <li><a href="#abdominales">Abdominales</a></li>
+            </ul>
+        </div>
+
+        <div id="pecho">
+            <h2>Pecho</h2>
+            <p>Aquí encontrarás ejercicios para trabajar el pecho.</p>
+            <!-- Lista de ejercicios de pecho -->
+        </div>
+
+        <div id="espalda">
+            <h2>Espalda</h2>
+            <p>Aquí encontrarás ejercicios para trabajar la espalda.</p>
+            <!-- Lista de ejercicios de espalda -->
+        </div>
+
+        <div id="piernas">
+            <h2>Piernas</h2>
+            <p>Aquí encontrarás ejercicios para trabajar las piernas.</p>
+            <!-- Lista de ejercicios de piernas -->
+        </div>
+
+        <div id="brazos">
+            <h2>Brazos</h2>
+            <p>Aquí encontrarás ejercicios para trabajar los brazos.</p>
+            <!-- Lista de ejercicios de brazos -->
+        </div>
+
+        <div id="hombros">
+            <h2>Hombros</h2>
+            <p>Aquí encontrarás ejercicios para trabajar los hombros.</p>
+            <!-- Lista de ejercicios de hombros -->
+        </div>
+
+        <div id="abdominales">
+            <h2>Abdominales</h2>
+            <p>Aquí encontrarás ejercicios para trabajar los abdominales.</p>
+            <!-- Lista de ejercicios de abdominales -->
+        </div>
+    </div>
+</body>
+</html>
