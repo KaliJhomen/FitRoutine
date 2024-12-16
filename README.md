@@ -1,10 +1,10 @@
-# FitRoutine Project
+# FitRoutine 
 
 FitRoutine is a web application built with Django that allows users to register, log in, and manage their workout routines. The application provides features for creating, editing, and deleting personalized workout routines, tracking body parameters, and accessing a manual with exercise documentation and nutritional information.
 
 ## Features
 
-- User registration and login with email verification and password reset functionality.
+- User registration and login with email verification and password reset.
 - Ability to create, edit, and delete custom workout routines.
 - Selection of exercises based on targeted muscle groups.
 - Tracking of body parameters such as weight, height, and measurements.
@@ -12,9 +12,9 @@ FitRoutine is a web application built with Django that allows users to register,
 
 ## Technologies Used
 
-- Django: A high-level Python web framework for rapid development.
-- PostgreSQL: A powerful, open-source object-relational database system.
-- HTML/CSS: For front-end development and user interface design.
+- Django
+- PostgreSQL
+- HTML/CSS
 
 ## Project Structure
 
@@ -78,49 +78,6 @@ FitRoutine
 └── db.sqlite3
 ```
 
-## Setup Instructions
 
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd FitRoutine
-   ```
 
-2. Create a virtual environment and activate it:
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
 
-3. Install the required packages:
-   ```
-   pip install -r requirements.txt
-   ```
-
-4. Configure the PostgreSQL database in `settings.py`.
-
-5. Run database migrations:
-   ```
-   python manage.py migrate
-   ```
-
-6. Create a superuser to access the admin interface:
-   ```
-   python manage.py createsuperuser
-   ```
-
-7. Start the development server:
-   ```
-   python manage.py runserver
-   ```
-
-8. Access the application at `http://127.0.0.1:8000/`.
-
-## Future Enhancements
-
-- Extend the application to support mobile platforms using Django Rest Framework.
-- Implement additional features based on user feedback.
-
-## License
-
-This project is licensed under the MIT License.
