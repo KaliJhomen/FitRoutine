@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enciclopedia - FitRoutine</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'base.html' %}
+    <div class="container">
+        <h1>Enciclopedia de Ejercicios y Nutrición</h1>
+        <p>Bienvenido a la enciclopedia de FitRoutine. Aquí encontrarás información útil sobre ejercicios, nutrición y respuestas a preguntas frecuentes para principiantes.</p>
+        
+        <h2>Ejercicios</h2>
+        <p>Selecciona un grupo muscular para ver los ejercicios disponibles:</p>
+        <ul>
+            <li><a href="{% url 'manual:ejercicios_pecho' %}">Pecho</a></li>
+            <li><a href="{% url 'manual:ejercicios_espalda' %}">Espalda</a></li>
+            <li><a href="{% url 'manual:ejercicios_pierna' %}">Pierna</a></li>
+            <li><a href="{% url 'manual:ejercicios_brazo' %}">Brazos</a></li>
+            <li><a href="{% url 'manual:ejercicios_hombro' %}">Hombros</a></li>
+            <li><a href="{% url 'manual:ejercicios_abdomen' %}">Abdomen</a></li>
+        </ul>
+
+        <h2>Nutrición Deportiva</h2>
+        <p>Encuentra información sobre suplementos y consejos de nutrición:</p>
+        <a href="{% url 'manual:nutricion' %}">Nutrición</a>
+
+        <h2>Preguntas Frecuentes</h2>
+        <p>Consulta nuestras respuestas a preguntas comunes:</p>
+        <ul>
+            <li><a href="{% url 'manual:faq' %}">Preguntas Frecuentes</a></li>
+        </ul>
+    </div>
+</body>
+</html>

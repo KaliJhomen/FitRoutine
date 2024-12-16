@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Entrenamientos</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <h1>Mis Entrenamientos</h1>
+    <a href="{% url 'create_workout' %}">Crear Nueva Rutina</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre de la Rutina</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for workout in workouts %}
+            <tr>
+                <td>{{ workout.name }}</td>
+                <td>
+                    <a href="{% url 'edit_workout' workout.id %}">Editar</a>
+                    <a href="{% url 'delete_workout' workout.id %}">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No tienes rutinas de entrenamiento creadas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+</body>
+</html>

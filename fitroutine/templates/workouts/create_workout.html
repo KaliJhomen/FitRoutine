@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Rutina de Entrenamiento</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'base.html' %}
+    <div class="container">
+        <h1>Crear Rutina de Entrenamiento</h1>
+        <form method="POST" action="{% url 'create_workout' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nombre">Nombre de la Rutina:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="parte_cuerpo">Parte del Cuerpo:</label>
+                <select id="parte_cuerpo" name="parte_cuerpo" required>
+                    <option value="pecho">Pecho</option>
+                    <option value="espalda">Espalda</option>
+                    <option value="piernas">Piernas</option>
+                    <option value="brazos">Brazos</option>
+                    <option value="hombros">Hombros</option>
+                    <option value="abdominales">Abdominales</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ejercicios">Ejercicios:</label>
+                <textarea id="ejercicios" name="ejercicios" rows="5" required></textarea>
+                <small>Escribe los ejercicios separados por comas.</small>
+            </div>
+            <button type="submit">Guardar Rutina</button>
+        </form>
+        <a href="{% url 'workouts' %}">Volver a la lista de rutinas</a>
+    </div>
+</body>
+</html>
