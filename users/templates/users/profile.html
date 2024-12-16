@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'base.html' %}
+    <div class="container">
+        <h1>Perfil de {{ user.username }}</h1>
+        <p><strong>Correo Electrónico:</strong> {{ user.email }}</p>
+        <p><strong>Nombre de Usuario:</strong> {{ user.username }}</p>
+        
+        <h2>Parámetros Corporales</h2>
+        <ul>
+            <li>Peso: {{ user.profile.weight }} kg</li>
+            <li>Talla: {{ user.profile.height }} cm</li>
+            <li>Hombros: {{ user.profile.shoulders }} cm</li>
+            <li>Pectoral: {{ user.profile.chest }} cm</li>
+            <li>Cintura: {{ user.profile.waist }} cm</li>
+            <li>Bíceps: {{ user.profile.biceps }} cm</li>
+            <li>Antebrazo: {{ user.profile.forearm }} cm</li>
+            <li>Glúteos: {{ user.profile.glutes }} cm</li>
+        </ul>
+
+        <a href="{% url 'update_profile' %}">Actualizar Perfil</a>
+        <a href="{% url 'logout' %}">Cerrar Sesión</a>
+    </div>
+</body>
+</html>
