@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enciclopedia - FitRoutine</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ejercicios y Nutrición</h1>
+        <p>Aquí encontrarás información útil sobre ejercicios, nutrición y respuestas a preguntas frecuentes para principiantes.</p>
+        
+        <p><a href="{%url 'manual:muscle_groups' %}">Ejercicios</a></p>
+
+        <a href="{%url 'manual:add_exercise' %}">admi editar</a>
+        <p><a href="{% url 'manual:nutrition' %}">Nutrición Deportiva</a></p>
+        <p><a href="{% url 'home' %}">Volver a la página principal</a></p>
+    </ul>
+    </div>
+</body>
+</html>
