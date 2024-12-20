@@ -7,7 +7,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fitroutine_db',
-        'USER': 'postgres',
+        'USER': 'ader',
         'PASSWORD': '13101310',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -67,7 +67,7 @@ TEMPLATES = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 WSGI_APPLICATION = 'fitroutine.wsgi.application'
 ASGI_APPLICATION = 'fitroutine.asgi.application'
-
+AUTH_USER_MODEL = 'users.UserProfile'
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -90,6 +90,12 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'fitroutine', 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+LOGIN_URL = '/login/'
+

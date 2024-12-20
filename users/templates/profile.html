@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Perfil de {{ profile.username }}</h1>
+        <p><strong>Correo Electrónico:</strong> {{ profile.email }}</p>
+        <p><strong>Nombre de Usuario:</strong> {{ profile.username }}</p>
+        
+        <h2>Parámetros Corporales</h2>
+        <ul>
+            <li>Peso: {{ body_measurements.weight }} kg</li>
+            <li>Talla: {{ body_measurements.height }} cm</li>
+            <li>Hombros: {{ body_measurements.shoulders }} cm</li>
+            <li>Pectoral: {{ body_measurements.chest }} cm</li>
+            <li>Cintura: {{ body_measurements.waist }} cm</li>
+            <li>Bíceps: {{ body_measurements.biceps }} cm</li>
+            <li>Antebrazo: {{ body_measurements.forearm }} cm</li>
+            <li>Glúteos: {{ body_measurements.glutes }} cm</li>
+        </ul>
+
+        <a href="{% url 'users:update_profile' %}">Actualizar Perfil</a>
+        <p><a href="{% url 'home' %}">Volver</a></p>
+    </div>
+</body>
+</html>

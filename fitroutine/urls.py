@@ -1,11 +1,18 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import base_view
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import welcome_view, home_view
+
 urlpatterns = [
+    path('', welcome_view, name='welcome'),
+    path('home/', home_view, name='home'),
     path('admin/', admin.site.urls),
+    #apps
     path('users/', include('users.urls')),
     path('workouts/', include('workouts.urls')),
     path('manual/', include('manual.urls')),
-    path('', base_view, name='home'),
-    path('accounts/', include('django.contrib.auth.urls')),  # For login, logout, password reset
+    
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

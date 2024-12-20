@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nueva Rutina - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Crear Nueva Rutina</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nombre">Nombre de la Rutina:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <a href="{% url 'manual:muscle_groups'%}" class="btn btn-primary">Agregar nuevo ejercicio</a>
+            <button type="submit">Guardar</button>
+        </form>
+        <a href="{% url 'workouts:workouts' %}">Volver a la lista de rutinas</a>
+    </div>
+</body>
+</html>

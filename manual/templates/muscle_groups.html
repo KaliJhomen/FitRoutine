@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Grupo Muscular - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Seleccionar Grupo Muscular</h1>
+        <div class="muscle-groups">
+            <div class="muscle-group">
+                <a href="{% url 'manual:exercises' 'pecho' %}">Pecho</a>
+                <img src="{% static 'manualimages/eskk.png'%}" alt="Pecho" style="width: 50px; height: auto;">
+            </div>
+            <div class="muscle-group">
+                <a href="{% url 'manual:exercises' 'espalda' %}">Espalda</a>
+                <img src="% static exercises/images/kali.png" alt="Pecho" style="width: 50px; height: auto;">
+            </div>
+            <div class="muscle-group">
+                <a href="{% url 'manual:exercises' 'pierna' %}">Pierna</a>
+            </div>
+            <div class="muscle-group">
+                <a href="{% url 'manual:exercises' 'brazo' %}">Brazos</a>
+            </div>
+            <div class="muscle-group">
+                <a href="{% url 'manual:exercises' 'hombro' %}">Hombros</a>
+            </div>
+            <div class="muscle-group">
+                <a href="{% url 'manual:exercises' 'abdomen' %}">Abdomen</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
