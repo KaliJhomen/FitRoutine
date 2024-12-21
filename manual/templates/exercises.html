@@ -3,25 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicios de {{ muscle_group|title }} - FitRoutine</title>
+    <title>Ejercicios de {{ muscle_group_name|title }} - FitRoutine</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container">
-        <h1>{{ muscle_group|title }}</h1>
+        <h1>{{ muscle_group_name|title }}</h1>
         <ul>
             {% for exercise in exercises %}
             <li>
                 <h2>{{ exercise.name }}</h2>
-                {% if exercise.image %}
-                <img src="{{ exercise.image.url }}" alt="{{ exercise.name }}" style="width: 200px; height: auto;">
-                {% endif %}
-                <video width="320", height="240" controls>
-                    <source src="{{exercise.video.url}}" type="video/mp4">
-                </video>
-                <p>{{ exercise.description }}</p>
-                
+                <img src="{{ exercise.image.url }}" alt="{{ exercise.name }}" style="width: 200px; height: auto;">                
             </li>
             {% endfor %}
         </ul>
