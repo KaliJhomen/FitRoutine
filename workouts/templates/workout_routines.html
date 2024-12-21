@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Rutinas de Ejercicio - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Mis Rutinas de Ejercicio</h1>
+        <a href="{% url 'workouts:create_workout_routine' %}" class="btn btn-primary">Crear Nueva Rutina</a>
+        <ul>
+            {% for routine in routines %}
+            <li>
+                <h2>{{ routine.name }}</h2>
+                <p>Fecha de Creación: {{ routine.date_created }}</p>
+                <a href="{% url 'workouts:add_workout_exercise' routine.id %}" class="btn btn-primary">Añadir Ejercicio</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'home' %}">Volver</a>
+
+    </div>
+</body>
+</html>
