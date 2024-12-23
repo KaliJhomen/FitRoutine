@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserProfileCreationForm, UserProfileUpdateForm
+from .forms import UserProfileCreationForm, UserProfileUpdateForm, BodyMeasurementUpdateForm
 from .models import UserProfile, BodyMeasurement
 
 def user_register(request):
@@ -27,6 +27,22 @@ def user_login(request):
         else:
             messages.error(request, 'Correo o contraseña incorrectos')    
     return render(request, 'registration/login.html')
+
+def update_body_measurement_view(request):
+    #manejo de excepciones
+    try:
+        body_measurement = BodyMeasurement.objects.get(user=request.user)
+    except BodyMeasurement.DoesNotExist:
+        body_measurement = BodyMeasurement(user=request.user)
+
+    if request.method == 'POST':
+        form = BodyMeasurementUpdateForm(request.POST, instance=body_measurement)
+        if form.is_valid():
+            form.save()
+            return redirect('users:profile')
+    else:
+        form = BodyMeasurementUpdateForm(instance=body_measurement)
+    return render(request, 'update_body_measurement.html', {'form': form})
 
 @login_required
 def user_profile(request):

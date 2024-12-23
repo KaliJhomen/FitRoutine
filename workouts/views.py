@@ -1,42 +1,37 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Workout
-from .forms import WorkoutForm
+from .models import WorkoutRoutine, WorkoutExercise
+from .forms import WorkoutRoutineForm, WorkoutExerciseForm
 
 @login_required
-def workouts_list(request):
-    workouts = Workout.objects.all()
-    return render(request, 'workouts.html', {'workouts': workouts})
+def workout_routines(request):
+    routines = WorkoutRoutine.objects.filter(user=request.user).order_by('-date_created')
+    return render(request, 'workouts_routines.html', {'routines': routines})
 
 @login_required
-def create_workout(request):
+def create_workout_routine(request):
     if request.method == 'POST':
-        form = WorkoutForm(request.POST)
+        form = WorkoutRoutineForm(request.POST)
         if form.is_valid():
-            workout = form.save(commit=False)
-            workout.user = request.user
-            workout.save()
-            return redirect('workouts_list')
+            workout_routine = form.save(commit=False)
+            workout_routine.user = request.user
+            workout_routine.save()
+            form.save_m2m()  # Save the many-to-many relationships
+            return redirect('workouts:workouts_routines')
     else:
-        form = WorkoutForm()
-    return render(request, 'create_workout.html', {'form': form})
+        form = WorkoutRoutineForm()
+    return render(request, 'create_workout_routine.html', {'form': form})
 
 @login_required
-def edit_workout(request, workout_id):
-    workout = get_object_or_404(Workout, id=workout_id, user=request.user)
+def add_workout_exercise(request, workout_id):
+    workout_routine = WorkoutRoutine.objects.get(id=workout_id)
     if request.method == 'POST':
-        form = WorkoutForm(request.POST, instance=workout)
+        form = WorkoutExerciseForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('workouts_list')
+            workout_exercise = form.save(commit=False)
+            workout_exercise.workout = workout_routine
+            workout_exercise.save()
+            return redirect('workouts:workout_detail', workout_id=workout_id)
     else:
-        form = WorkoutForm(instance=workout)
-    return render(request, 'edit_workout.html', {'form': form, 'workout': workout})
-
-@login_required
-def delete_workout(request, workout_id):
-    workout = get_object_or_404(Workout, id=workout_id, user=request.user)
-    if request.method == 'POST':
-        workout.delete()
-        return redirect('workouts_list')
-    return render(request, 'delete_workout.html', {'workout': workout})
+        form = WorkoutExerciseForm()
+    return render(request, 'workouts/add_workout_exercise.html', {'form': form, 'workout_routine': workout_routine})

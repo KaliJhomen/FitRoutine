@@ -18,7 +18,7 @@ class UserProfileCreationForm(UserCreationForm):
 class UserProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['username', 'email', 'weight', 'height', 'shoulders', 'chest', 'waist', 'biceps', 'forearm', 'glutes']
+        fields = ['username', 'email']
     
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -29,7 +29,7 @@ class UserProfileUpdateForm(forms.ModelForm):
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.EmailField(label='Correo electrónico', required=True)
-class BodyMeasurementForm(forms.ModelForm):
+class BodyMeasurementUpdateForm(forms.ModelForm):
     class Meta:
         model = BodyMeasurement
         fields = ['weight', 'height', 'shoulders', 'chest', 'waist', 'biceps', 'forearm', 'glutes']

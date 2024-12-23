@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Rutina de Ejercicio - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Crear Rutina de Ejercicio</h1>
+        <form method="post">
+            <a href="{% url 'manual:muscles' %}" class="btn btn-secondary">Agregar Nuevo Ejercicio</a>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
+        <a href="{% url 'workouts:workouts_routines' %}">Volver</a>
+    </div>
+</body>
+</html>
