@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ejercicios</h1>
+        <div class="cards">
+            {% for muscle in muscles %}
+            <a href="{% url 'manual:exercises' muscle.name %}" class = "card-link">
+                <div class="card">
+                    <span>{{ muscle.name }}</span>
+                    <img src="{{ muscle.image.url }}" alt="{{ muscle.name }}">
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <a href="{% url 'manual:indice'%}">Volver</a>
+    </div>
+</body>
+</html>

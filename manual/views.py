@@ -1,29 +1,38 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from .models import Exercise, Nutrition, Manual
-from .forms import ExerciseForm
+from django.shortcuts import render, get_object_or_404
+from .models import Exercise, NutritionalSuplement, Suplement, Manual, Muscle
 
-def exercises_view(request, muscle_group):
-    exercises = Exercise.objects.filter(muscle_group= muscle_group)
-    return render(request, 'exercises.html', {'exercises': exercises, 'muscle_group': muscle_group})
-def nutrition_view(request):
-    nutrition = Nutrition.objects.all()
-    return render(request, 'nutrition.html', {'nutrition': nutrition})
+
+def muscles_view(request):
+    muscles = Muscle.objects.all()
+    return render(request, 'muscles.html', {'muscles': muscles})
+
+def exercises_view(request, muscle_name):
+    muscle = get_object_or_404(Muscle, name=muscle_name)
+    exercises = Exercise.objects.filter(muscles= muscle)
+    return render(request, 'exercises.html', {'exercises': exercises, 'muscle': muscle.name})
+def exercise_view(request, exercise_id):
+    exercise= get_object_or_404(Exercise, id= exercise_id)
+    return render(request, 'exercise.html', {'exercise':exercise})
+
+def nutritional_suplements_view(request):
+    nutritional_suplements = NutritionalSuplement.objects.all()
+    return render(request, 'nutritional_suplements.html', {'nutritional_suplements': nutritional_suplements})
+
+def suplements_view(request, nutritional_suplement_name):
+    nutritional_suplement=get_object_or_404(NutritionalSuplement, name=nutritional_suplement_name)
+    suplements = Suplement.objects.filter(nutritional_suplement= nutritional_suplement)
+    return render(request, 'suplements.html', {'suplements': suplements, 'nutritional_suplement':nutritional_suplement.name})
+def suplement_view(request, suplement_id):
+    suplement= get_object_or_404(Suplement, id=suplement_id)
+    return render(request, 'suplement.html', {'suplement':suplement})
+
+
 
 def index_view(request):
     indice = Manual.objects.all()
     return render(request, 'indice.html', {'indice': indice})
-def muscle_groups_view(request):
-    return render(request, 'muscle_groups.html')
-@login_required
-def add_exercise(request):
-    if not request.user.is_superuser:
-        return redirect('manual:select_muscle_group')  # Redirige si el usuario no es superusuario
-    if request.method == 'POST':
-        form = ExerciseForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('manual:select_muscle_group')
-    else:
-        form= ExerciseForm()
-    return render(request, 'add_exercise.html', {'form': form})
+
+
+
+
+

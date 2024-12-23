@@ -1,33 +1,42 @@
 from django.db import models
 
+#grupos musculares
+class Muscle(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    image= models.ImageField(upload_to='manual/musclesimages', blank=True, null=True)
+    def __str__(self):
+        return self.name
+#tags a usar 
+class Tag(models.Model):
+    name= models.CharField(max_length=20, unique=True)
+    def __str__(self):
+        return self.name
+    
+#ejercicios-grupos musculares
 class Exercise(models.Model):
-    MUSCLE_GROUP_CHOICES = [
-        ('pecho', 'Pecho'),
-        ('espalda', 'Espalda'),
-        ('pierna', 'Pierna'),
-        ('brazo', 'Brazo'),
-        ('hombro', 'Hombro'),
-        ('abdomen', 'Abdomen'),]
     name = models.CharField(max_length=100)
     description = models.TextField()
-    muscle_group = models.CharField(max_length=50, choices=MUSCLE_GROUP_CHOICES)    
+    muscles = models.ManyToManyField(Muscle)    
+    tags= models.ManyToManyField(Tag)
     image = models.ImageField(upload_to='manual/exercises/images', blank=True, null=True)
     video= models.FileField(upload_to='manual/exercises/videos', blank= True, null=True)
     def __str__(self):
         return self.name
-
-class Nutrition(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    image = models.ImageField(upload_to='nutrition/', blank=True, null=True)
-
+##Suplementos
+class NutritionalSuplement(models.Model):
+    name= models.CharField(max_length=50)
+    image= models.ImageField(upload_to='manual/nutritionalsuplementsimages', blank=True, null=True)
     def __str__(self):
-        return self.title
-
+        return self.name
+#suplementos nutricionales - suplementos
+class Suplement(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
+    nutritional_suplement= models.ManyToManyField(NutritionalSuplement)
+    image = models.ImageField(upload_to='manual/suplementsimages', blank=True, null=True)
+    def __str__(self):
+        return self.name
+    
+##si hay tiempo...
 class Manual(models.Model):
-    question = models.CharField(max_length=200)
-    answer = models.TextField()
-    image = models.ImageField(upload_to='manual/', blank=True, null=True)
-
-    def __str__(self):
-        return self.question
+    pass
