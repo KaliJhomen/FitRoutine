@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrición Deportiva - FitRoutine</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Nutrición Deportiva</h1>
+        <div class="cards">
+            {% for nutritional_suplement in nutritional_suplements %}
+            <a href="{% url 'manual:suplements' nutritional_suplement.name %}" class = "card-link">
+                <div class="card">
+                    <span>{{ nutritional_suplement}}</span>
+                    <img src="{{ nutritional_suplement.image.url }}" alt="{{ nutritional_suplement.name }}">
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <a href="{% url 'manual:indice'%}">Volver</a>
+</body>
+</html>

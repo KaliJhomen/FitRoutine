@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ exercise.name }} - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ exercise.name }}</h1>
+        <div class="item-info">
+            <div class="video-container">
+                <video width="320" height="240" controls>
+                    <source src="{{ exercise.video.url }}" type="video/mp4">
+                </video>
+            </div>
+            <p>{{ exercise.description }}</p>
+            <p>Tags: 
+                {% for tag in exercise.tags.all %}
+                {{ tag.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            </p>
+        </div>
+    </div>
+</body>
+</html>

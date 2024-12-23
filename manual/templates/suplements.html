@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ nutritional_suplement}} - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ nutritional_suplement|title}}</h1>
+        <div class="item-list">
+            {% for suplement in suplements %}
+            <a href="{%url 'manual:suplement' suplement.id %}">
+                <div class="item">
+                    <div class="item-image">
+                        <img src="{{ suplement.image.url }}" alt="{{ suplement.name }}"> 
+                    </div>
+                    <div class="item-info">
+                        <span>{{ suplement.name }}</span>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
