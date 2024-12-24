@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>Ejercicios para {{ muscle|title }}</h1>
+    <div class="exercises-container">
+        <h1 class="exercise-title">Ejercicios para {{ muscle|title }}</h1>
         <div class="item-list">
+            <p><a href="{% url 'manual:muscles' %}">Volver</a></p>
             {% for exercise in exercises %}
             <a href="{% url 'manual:exercise' exercise.id %}">
                 <div class="item">

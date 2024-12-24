@@ -3,35 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitRoutine</title>
+    <title>FitRoutine - Home</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    
     <script>
         function confirmLogout(event) {
-            event.preventDefault();
-            var userConfirmed = confirm("¿Estás seguro de que quieres cerrar sesión?");
-            if (userConfirmed) {
+            if (!confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+                event.preventDefault();
+            } else {
                 window.location.href = event.target.href;
             }
         }
     </script>
-    
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/FitRoutine.png' %}" alt="FitRoutine Logo" class="navbar-logo">
+                </a>
+            </div>
             <ul class="nav-list">
                 <li><a href="{% url 'users:profile' %}">Perfil</a></li>
                 <li><a href="{% url 'workouts:workouts_routines' %}">Entrenamientos</a></li>
                 <li><a href="{% url 'manual:indice' %}">Manual</a></li>
-                <li><a href="{% url 'welcome' %}"onclick="confirmLogout(event)">Cerrar sesión</a></li>
+                <li><a href="{% url 'login' %}" onclick="confirmLogout(event)">Cerrar sesión</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h2>Entrenamientos</h2>
-        <p>Días de Entrenamiento</p>
+    <main class="main-background">
+        <div class="overlay">
+            <h1 class="main-title"><strong>Haz tu cuerpo</strong> Fit y Perfecto</h1>
+            <a href="{% url 'workouts:workouts_routines' %}" class="btn btn-primary">¡Empieza!</a>
+        </div>
     </main>
 </body>
 </html>
