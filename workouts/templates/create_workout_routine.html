@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Rutina de Ejercicio - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script>
+        function confirmDiscardChanges(event) {
+            if (!confirm('Tienes cambios sin guardar, ¿seguro que quieres descartar esta rutina?')) {
+                event.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Crear Rutina de Ejercicio</h1>
+        <form method="post" action="{% url 'workouts:create_workout_routine' %}">
+            {% csrf_token %}
+            <label class="input"for="routine_name">Nombre de la Rutina:</label>
+            <input type="text" id="routine_name" name="routine_name" required>
+            <button type="submit" name="save_routine" class="btn btn-primary">Guardar Rutina</button>
+            <button type="submit" name="add_exercise" class="btn btn-secondary">Agregar Ejercicio</button>
+        </form>
+        <div class="container">
+            <h2>Ejercicios en la Rutina</h2>
+            <ul>
+                {% for exercise in exercises %}
+                <li>{{ exercise.name }} - {{ exercise.sets }} sets, {{ exercise.reps }} reps, {{ exercise.weight }} kg</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'workouts:workouts_routines' %}" class="btn btn-secondary" onclick="confirmDiscardChanges(event)">Volver</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Rutinas de Ejercicio - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script>
+        function confirmLogout(event) {
+            if (!confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+                event.preventDefault();
+            } else {
+                window.location.href = event.target.href;
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/FitRoutine.png' %}" alt="FitRoutine Logo" class="navbar-logo">
+                </a>
+            </div>
+            <ul class="nav-list">
+                <li><a href="{% url 'users:profile' %}">Perfil</a></li>
+                <li><a href="{% url 'workouts:workouts_routines' %}">Entrenamientos</a></li>
+                <li><a href="{% url 'manual:indice' %}">Manual</a></li>
+                <li><a href="{% url 'users:login' %}" onclick="confirmLogout(event)">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Mis Rutinas de Ejercicio</h1>
+        <a href="{% url 'workouts:create_workout_routine' %}" class="btn btn-primary">Crear Nueva Rutina</a>
+        <ul>
+            {% for routine in routines %}
+            <li>
+                <h2><a href="{% url 'workouts:detail_workout_routine' routine.id %}">{{ routine.name }}</a></h2>
+                <p>Fecha de Creación: {{ routine.date_created }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'home' %}">Volver</a>
+    </div>
+</body>
+</html>

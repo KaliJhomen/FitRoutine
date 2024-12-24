@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - FitRoutine</title>
+    <title>FitRoutine - Iniciar Sesión</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Organetto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <div class="login-container">
         <div class="left-side">
-            <img src="{% static 'images/FitRoutine.png' %}" alt="FitRoutine Logo" class="logo">
+            <img src="{% static 'images/FitRoutine.png' %}" alt="FitRoutine Logo" class="logo login-logo">
         </div>
         <div class="right-side">
             <h1>FitRoutine</h1>
@@ -23,7 +24,7 @@
                 </div>
             {% endif %}
             
-            <form method="post" action="{% url 'users:login' %}">
+            <form method="post" action="{% url 'users:login' %}" class="login-form">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="email">Correo Electrónico:</label>
@@ -34,10 +35,6 @@
                     <input type="password" name="password" id="password" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                <div class="additional-links">
-                    <p><a href="{% url 'users:password_reset' %}">¿Olvidaste tu contraseña?</a></p>
-                    <p>¿No tienes una cuenta? <a href="{% url 'users:register' %}">Regístrate aquí</a></p>
-                </div>
             </form>
         </div>
     </div>

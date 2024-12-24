@@ -1,20 +1,15 @@
 from django import forms
-from .models import Workout
+from .models import WorkoutRoutine, WorkoutExercise
 
-class WorkoutForm(forms.ModelForm):
+class WorkoutRoutineForm(forms.ModelForm):
     class Meta:
-        model = Workout
-        fields = ['name', 'description', 'muscle_group', 'exercises', 'image']
+        model = WorkoutRoutine
+        fields = ['name', 'exercises']
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 4}),
-            'image': forms.ClearableFileInput(attrs={'multiple': False}),
+            'exercises': forms.CheckboxSelectMultiple(),
         }
 
-class WorkoutEditForm(forms.ModelForm):
+class WorkoutExerciseForm(forms.ModelForm):
     class Meta:
-        model = Workout
-        fields = ['name', 'description', 'muscle_group', 'exercises', 'image']
-        widgets = {
-            'description': forms.Textarea(attrs={'rows': 4}),
-            'image': forms.ClearableFileInput(attrs={'multiple': False}),
-        }
+        model = WorkoutExercise
+        fields = ['exercise', 'sets', 'reps', 'weight']

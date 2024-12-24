@@ -1,0 +1,23 @@
+<title>Seleccionar Ejercicios - FitRoutine</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="exercises-container2">
+        <h1>Seleccionar Ejercicios para {{ muscle.name }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <ul>
+                {% for exercise in exercises %}
+                <li class="exercise-item">
+                    <input type="checkbox" name="exercises" value="{{ exercise.id }}">
+                    {{ exercise.name }}
+                </li>
+                {% endfor %}
+            </ul>
+            <button type="submit" class="btn btn-primary">Agregar Ejercicios</button>
+        </form>
+        <a class="btn-secondary"href="{% url 'workouts:select_muscle' workout_routine.id %}">Volver</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Rutina - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ workout_routine.name }}</h1>
+        <p>Fecha de Creación: {{ workout_routine.date_created }}</p>
+        <h2>Ejercicios</h2>
+        <ul>
+            {% for exercise in exercises %}
+            <li>
+                <a href="{% url 'workouts:edit_workout_exercise' exercise.id %}">{{ exercise.exercise.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'workouts:workouts_routines' %}" class="btn btn-secondary">Volver</a>
+        <form method="post" action="{% url 'workouts:delete_workout_routine' workout_routine.id %}" onsubmit="return confirm('¿Realmente quieres eliminar esta rutina?');">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar Rutina</button>
+        </form>
+    </div>
+</body>
+</html>

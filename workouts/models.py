@@ -1,37 +1,24 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.conf import settings
-class Exercise(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    image = models.ImageField(upload_to='exercises/', blank=True)
-    muscle_group = models.CharField(max_length=50)
-
-class Workout(models.Model):
-    name = models.CharField(max_length=100)
-    muscle_group = models.CharField(max_length=50)
-    exercises = models.ManyToManyField(Exercise)
-    image = models.ImageField(upload_to='workouts/', blank=True)
-    description = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return self.name
-
-class UserBodyMetrics(models.Model):
+from manual.models import Exercise, Muscle
+class WorkoutRoutine(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    weight = models.FloatField()
-    height = models.FloatField()
-    shoulder_measurement = models.FloatField()
-    chest_measurement = models.FloatField()
-    waist_measurement = models.FloatField()
-    bicep_measurement = models.FloatField()
-    forearm_measurement = models.FloatField()
-    glute_measurement = models.FloatField()
-    date_recorded = models.DateField(auto_now_add=True)
+    name = models.CharField(max_length=100)
+    exercises = models.ManyToManyField(Exercise, through='WorkoutExercise')
+    date_created = models.DateField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-date_recorded']  # Keep the latest measurements first
+        ordering = ['-date_created']  
 
     def __str__(self):
-        return f"{self.user.username} - {self.date_recorded}"
+        return f"{self.name} - {self.user.username}"
+
+class WorkoutExercise(models.Model):
+    workout_routine = models.ForeignKey(WorkoutRoutine, on_delete=models.CASCADE)
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    sets = models.IntegerField(null=True, blank=True)
+    reps = models.IntegerField(null=True, blank=True)
+    weight = models.FloatField(null=True, blank=True)  
+
+    def __str__(self):
+        return f"{self.workout_routine.name} - {self.exercise.name}"

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Músculo - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="exercises-container">
+        <h1>Seleccionar Músculo</h1>
+        <ul class="item-list">
+            {% for muscle in muscles %}
+            <li class="item">
+                <a href="{% url 'workouts:select_exercises' muscle.name workout_id %}" class="item-link">
+                    <div class="item-image"> 
+                        <img src="{{ muscle.image.url }}" alt="{{ muscle.name }}">
+                    </div>
+                    <div class="item-info">
+                        <span>{{ muscle.name }}</span>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'workouts:workouts_routines' %}" onclick="confirmDiscardChanges(event)">Volver</a>
+    </div>
+</body>
+</html>

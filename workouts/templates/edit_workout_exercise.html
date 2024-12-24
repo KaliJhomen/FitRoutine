@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Ejercicio - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Ejercicio</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="sets">Sets:</label>
+            <input type="number" name="sets" id="sets" value="{{ exercise.sets }}">
+            <label for="reps">Reps:</label>
+            <input type="number" name="reps" id="reps" value="{{ exercise.reps }}">
+            <label for="weight">Peso:</label>
+            <input type="number" name="weight" id="weight" value="{{ exercise.weight }}">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+        <a href="{% url 'workouts:detail_workout_routine' exercise.workout_routine.id %}">Volver</a>
+    </div>
+</body>
+</html>

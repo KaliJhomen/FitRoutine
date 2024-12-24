@@ -8,11 +8,36 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h2>Actualizar Perfil</h2>
+    <div class="bm-container">
+        <h1>Actualizar Perfil</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            <h2>Actualizar Email</h2>
+            {{ profile_form.as_p }}
+            {% if profile_form.errors %}
+                <div class="form-errors">
+                    <ul>
+                        {% for field in profile_form %}
+                            {% for error in field.errors %}
+                                <li>{{ field.label }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <h2>Actualizar Contraseña</h2>
+            {{ password_form.as_p }}
+            {% if password_form.errors %}
+                <div class="form-errors">
+                    <ul>
+                        {% for field in password_form %}
+                            {% for error in field.errors %}
+                                <li>{{ field.label }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
             <button type="submit">Guardar Cambios</button>
         </form>
         <a href="{% url 'users:profile' %}">Volver a mi perfil</a>

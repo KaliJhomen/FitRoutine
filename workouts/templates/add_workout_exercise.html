@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Ejercicios a la Rutina - FitRoutine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Agregar Ejercicios a la Rutina</h1>
+        <form method="post">
+            {% csrf_token %}
+            <ul>
+                {% for exercise in exercises %}
+                <li>
+                    {{ exercise.exercise.name }}
+                    <label for="sets_{{ exercise.id }}">Sets:</label>
+                    <input type="number" name="sets_{{ exercise.id }}" id="sets_{{ exercise.id }}" value="{{ exercise.sets }}">
+                    <label for="reps_{{ exercise.id }}">Reps:</label>
+                    <input type="number" name="reps_{{ exercise.id }}" id="reps_{{ exercise.id }}" value="{{ exercise.reps }}">
+                    <label for="weight_{{ exercise.id }}">Peso:</label>
+                    <input type="number" name="weight_{{ exercise.id }}" id="weight_{{ exercise.id }}" value="{{ exercise.weight }}">
+                </li>
+                {% endfor %}
+            </ul>
+            <button type="submit" class="btn btn-primary">Guardar Ejercicios</button>
+        </form>
+        <a href="{% url 'workouts:select_muscle' workout_routine.id %}">Agregar Más Ejercicios</a>
+        <a href="{% url 'workouts:workouts_routines' %}">Volver</a>
+    </div>
+</body>
+</html>
