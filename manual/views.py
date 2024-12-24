@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Exercise, NutritionalSuplement, Suplement, Manual, Muscle
+from .models import Exercise, NutritionalSuplement, Suplement, Muscle, Manual
 
 
 def muscles_view(request):

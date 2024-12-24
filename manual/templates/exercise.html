@@ -13,7 +13,7 @@
         <div class="item-info">
             <div class="video-container">
                 <video width="320" height="240" controls>
-                    <source src="{{ exercise.video.url }}" type="video/mp4">
+                    <source src="{{ exercise.video.url }}" type="video/mp4" >
                 </video>
             </div>
             <p>{{ exercise.description }}</p>
@@ -21,6 +21,7 @@
                 {% for tag in exercise.tags.all %}
                 {{ tag.name }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
+            <p><a href="javascript:history.back()" class="btn btn-secondary">Volver</a></p>
             </p>
         </div>
     </div>

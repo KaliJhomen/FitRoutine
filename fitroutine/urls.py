@@ -2,11 +2,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import welcome_view, home_view
+from users.views import user_login
+from .views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', welcome_view, name='welcome'),
+    path('', user_login, name='login'),
     path('home/', home_view, name='home'),
     #apps
     path('users/', include('users.urls')),
